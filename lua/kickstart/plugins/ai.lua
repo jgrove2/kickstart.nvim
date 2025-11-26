@@ -6,17 +6,35 @@ return {
     event = 'InsertEnter',
     config = function()
       require('copilot').setup {
-        suggestions = {
-          enabled = true,
-          autotrigger = true,
-          keymap = {
-            accept = '<C-l>',
-            next = '<C-j>',
-            prev = '<C-k>',
-          },
-        },
         panel = { enabled = false },
+        suggestion = {
+          enabled = false,
+        },
+        filetypes = {
+          markdown = true,
+          help = true,
+        },
+        next_edit_suggestion = {
+          enabled = true,
+          keymap = '<C-j>',
+        },
       }
     end,
+  },
+  {
+    'yetone/avante.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'stevearc/dressing.nvim',
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = { file_types = { 'markdown', 'Avante' } },
+        ft = { 'markdown', 'Avante' },
+      },
+    },
+    build = 'make',
+    opts = { provider = 'copilot' },
   },
 }
